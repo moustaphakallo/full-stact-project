@@ -9,7 +9,7 @@ export default function ProductCard({ product, onAdd }) {
   return (
     <article className="product-card card">
       <ProductImage
-        src={product.imageUrl}
+        src={product.imageUrl ?? product.image}
         alt={product.name}
         className="product-card-image"
       />

@@ -40,7 +40,7 @@ export default function ProductPage() {
   return (
     <div className="product-detail">
       <ProductImage
-        src={product.imageUrl}
+        src={product.imageUrl ?? product.image}
         alt={product.name}
         className="product-detail-image"
       />

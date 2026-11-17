@@ -21,13 +21,15 @@ export default function HomePage() {
   useEffect(() => {
     getProducts()
       .then((data) => {
-        if (!Array.isArray(data?.products)) {
+        const productList = Array.isArray(data) ? data : data?.products;
+
+        if (!Array.isArray(productList)) {
           throw new Error(
             "Réponse API invalide. Vérifiez VITE_API_URL et la disponibilité du backend.",
           );
         }
 
-        setProducts(data.products);
+        setProducts(productList);
       })
       .catch((err) => {
         setError(err.message);

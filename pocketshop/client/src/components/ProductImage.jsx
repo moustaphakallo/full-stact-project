@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { getProductWhatsAppUrl } from "../utils/whatsapp";
 
 export default function ProductImage({ src, alt, className = "" }) {
-  const [unavailable, setUnavailable] = useState(!src);
+  const apiOrigin = new URL(
+    import.meta.env.VITE_API_URL || window.location.origin,
+    window.location.origin,
+  ).origin;
+  const imageUrl = src ? new URL(src, `${apiOrigin}/`).toString() : "";
+  const [unavailable, setUnavailable] = useState(!imageUrl);
   const whatsappUrl = getProductWhatsAppUrl(alt);
 
   useEffect(() => {
-    setUnavailable(!src);
-  }, [src]);
+    setUnavailable(!imageUrl);
+  }, [imageUrl]);
 
   if (unavailable) {
     return (
@@ -32,7 +37,7 @@ export default function ProductImage({ src, alt, className = "" }) {
       aria-label={`Contacter WhatsApp au sujet de ${alt}`}
     >
       <img
-        src={src}
+        src={imageUrl}
         alt={alt}
         className={className}
         onError={() => setUnavailable(true)}
