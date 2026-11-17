@@ -1,0 +1,11 @@
+{
+  "installCommand": "npm --prefix pocketshop/client ci",
+  "buildCommand": "npm --prefix pocketshop/client run build",
+  "outputDirectory": "pocketshop/client/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

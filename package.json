@@ -1,0 +1,14 @@
+{
+  "name": "backend-delux-full-stack-project",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "npm --prefix pocketshop/client run build",
+    "server": "npm --prefix pocketshop/server start",
+    "server:dev": "npm --prefix pocketshop/server run dev"
+  },
+  "dependencies": {
+    "mongodb-memory-server": "^11.3.0",
+    "mongoose": "^9.12.0"
+  }
+}
