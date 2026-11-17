@@ -7,6 +7,7 @@ export default defineConfig({
       jsxRuntime: "automatic",
     }),
   ],
+  build: { sourcemap: true },
   server: {
     proxy: {
       "/api": {
