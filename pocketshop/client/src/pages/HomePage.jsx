@@ -21,6 +21,12 @@ export default function HomePage() {
   useEffect(() => {
     getProducts()
       .then((data) => {
+        if (!Array.isArray(data?.products)) {
+          throw new Error(
+            "Réponse API invalide. Vérifiez VITE_API_URL et la disponibilité du backend.",
+          );
+        }
+
         setProducts(data.products);
       })
       .catch((err) => {

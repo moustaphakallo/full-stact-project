@@ -65,7 +65,7 @@ The API health endpoint is `/api/health`.
 Create a Vercel project with `client` as the root directory. Set:
 
 ```text
-VITE_API_URL=https://<render-service>.onrender.com/api
+VITE_API_URL=https://<render-service>.onrender.com/api/v1
 ```
 
 Redeploy the frontend after changing this environment variable.
