@@ -33,7 +33,7 @@ export default function TransactionsPage() {
       <h1>Transactions</h1>
 
       <div className="transaction-list">
-        {data?.transactions.map((transaction) => (
+        {data?.transactions?.map((transaction) => (
           <div className="transaction" key={transaction._id}>
             <div>
               <strong>{transaction.type}</strong>
@@ -57,11 +57,11 @@ export default function TransactionsPage() {
         </button>
 
         <span>
-          Page {page} / {data?.pagination.pages}
+          Page {page} / {data?.pagination?.pages ?? 1}
         </span>
 
         <button
-          disabled={page >= data?.pagination.pages}
+          disabled={page >= (data?.pagination?.pages ?? 1)}
           onClick={() => setPage(page + 1)}
         >
           Suivant
