@@ -49,7 +49,7 @@ Never commit the real connection string.
 
 ### Render
 
-Deploy the repository using [render.yaml](./render.yaml). In the Render dashboard, set:
+Deploy the repository using [render.yaml](../render.yaml). In the Render dashboard, set:
 
 - `MONGODB_URI`: the Atlas connection string
 - `SHOP_USERNAME`: the username created by the seed script
