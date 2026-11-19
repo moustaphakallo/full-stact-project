@@ -23,6 +23,7 @@ app.use(cors({
   origin(origin, callback) {
     const allowedOrigins = [
       process.env.CLIENT_URL,
+      "https://full-stact-project-fvbx.vercel.app",
       "http://localhost:5173",
       "http://127.0.0.1:5173",
     ].filter(Boolean);

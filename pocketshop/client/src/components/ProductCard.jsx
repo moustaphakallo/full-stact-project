@@ -16,7 +16,9 @@ export default function ProductCard({ product, onAdd }) {
       <div className="product-card-content">
         <Link to={`/products/${id}`}><h3>{product.name}</h3></Link>
         <p>{formatMoney(product.price)}</p>
-        <small>{product.stock > 0 ? `${product.stock} en stock` : "Indisponible"}</small>
+        <p className="product-stock">
+          {product.stock > 0 ? `${product.stock} en stock` : "Indisponible"}
+        </p>
         <button
           type="button"
           className="btn"

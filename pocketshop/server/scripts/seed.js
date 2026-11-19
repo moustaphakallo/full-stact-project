@@ -56,12 +56,25 @@ const seed = async () => {
     }
 
     for (const product of sampleProducts) {
-      const result = await Product.updateOne(
-        { name: product.name },
-        { $setOnInsert: product },
-        { upsert: true },
+      let result = await Product.findOneAndUpdate(
+        {
+          name: product.name,
+          $or: [
+            { imageUrl: "" },
+            { imageUrl: { $regex: "^https://images\\.unsplash\\.com/" } },
+          ],
+        },
+        { $set: { imageUrl: product.imageUrl } },
       );
-      if (result.upsertedCount) console.log(`Created: ${product.name}`);
+
+      if (!result) {
+        result = await Product.updateOne(
+          { name: product.name },
+          { $setOnInsert: product },
+          { upsert: true },
+        );
+        if (result.upsertedCount) console.log(`Created: ${product.name}`);
+      }
     }
 
     console.log("Seed terminé");

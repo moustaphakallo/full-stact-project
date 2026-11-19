@@ -14,13 +14,25 @@ async function seedProducts() {
   let added = 0;
 
   for (const product of sampleProducts) {
-    const result = await Product.updateOne(
-      { name: product.name },
-      { $setOnInsert: product },
-      { upsert: true },
-    );
+    const existing = await Product.findOne({
+      name: product.name,
+      $or: [
+        { imageUrl: "" },
+        { imageUrl: { $regex: "^https://images\\.unsplash\\.com/" } },
+      ],
+    });
 
-    added += result.upsertedCount;
+    if (existing) {
+      existing.imageUrl = product.imageUrl;
+      await existing.save();
+    } else {
+      const result = await Product.updateOne(
+        { name: product.name },
+        { $setOnInsert: product },
+        { upsert: true },
+      );
+      added += result.upsertedCount;
+    }
   }
 
   if (added > 0) {

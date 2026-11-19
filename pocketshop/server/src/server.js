@@ -6,10 +6,8 @@ import { dirname, resolve } from "node:path";
 import app from "./app.js";
 import { connectDatabase } from "./config/database.js";
 
-// Configuration DNS
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
-// Charger le fichier .env situé dans server/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 

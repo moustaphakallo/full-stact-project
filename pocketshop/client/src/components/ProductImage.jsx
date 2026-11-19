@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getProductWhatsAppUrl } from "../utils/whatsapp";
 
 export default function ProductImage({ src, alt, className = "" }) {
-  const apiOrigin = new URL(
-    import.meta.env.VITE_API_URL || window.location.origin,
-    window.location.origin,
-  ).origin;
-  const imageUrl = src ? new URL(src, `${apiOrigin}/`).toString() : "";
+  const imageUrl = src
+    ? new URL(src, window.location.origin).toString()
+    : "";
   const [unavailable, setUnavailable] = useState(!imageUrl);
   const whatsappUrl = getProductWhatsAppUrl(alt);
 
